@@ -176,12 +176,14 @@ public class Sort {
 			{
 				result[index_result] = less_array[i];
 				index_result += 1;
+				System.out.println("*");
 			}
-
+			
 			for(int i = 0; i < index_greater; i++)
 			{
 				result[index_result] = greater_array[i];
 				index_result += 1;
+				System.out.println("**");
 			}
 			System.out.println(Arrays.toString(result));
 			System.out.println();
@@ -191,6 +193,38 @@ public class Sort {
 			
 			return array;
 	}
+	
+	/**
+	 * Quicksort_2
+	 * http://puntocomnoesunlenguaje.blogspot.com/2012/12/java-quicksort.html
+	 * 
+	 * @param Array
+	 * @param izq
+	 * @param der
+	 */
+	public static void QuickSort_2(int Array[], int izq, int der) {
+
+		  int pivote=Array[izq]; // tomamos primer elemento como pivote
+		  int i=izq; // i realiza la búsqueda de izquierda a derecha
+		  int j=der; // j realiza la búsqueda de derecha a izquierda
+		  int aux;
+		 
+		  while(i<j){            // mientras no se crucen las búsquedas
+		     while(Array[i]<=pivote && i<j) i++; // busca elemento mayor que pivote
+		     while(Array[j]>pivote) j--;         // busca elemento menor que pivote
+		     if (i<j) {                      // si no se han cruzado                      
+		         aux= Array[i];                  // los intercambia
+		         Array[i]=Array[j];
+		         Array[j]=aux;
+		     }
+		   }
+		   Array[izq]=Array[j]; // se coloca el pivote en su lugar de forma que tendremos
+		   Array[j]=pivote; // los menores a su izquierda y los mayores a su derecha
+		   if(izq<j-1)
+		      QuickSort_2(Array,izq,j-1); // ordenamos subarray izquierdo
+		   if(j+1 <der)
+		      QuickSort_2(Array,j+1,der); // ordenamos subarray derecho
+		}
 	
 	/**
 	 * BinarySearch
@@ -276,7 +310,8 @@ public class Sort {
 			{
 				time_start = System.nanoTime();
 				//QuickSort(array_data, array_data.length);
-				MergeSort(array_data);
+				QuickSort_2(array_data, 0 ,array_data.length - 1);
+				//MergeSort(array_data);
 				time_end = System.nanoTime();
 
 				time_results[i] = ((time_end - time_start));
@@ -312,22 +347,21 @@ public class Sort {
 			BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) );
 			BufferedWriter bw = new BufferedWriter( new OutputStreamWriter( System.out ) );
 			
-			//int[] array = GenerateArrays(20);
+			int[] array = GenerateArrays(20);
 			//printArray(array);
-			int[] array = {5,2,7,3,1,8,2,6,9};
 			
 			//BubbleSort(array);
 			//InsertionSort(array);
 			//System.out.print(">> ");
 			//printArray(MergeSort(array));
-			printArray(QuickSort(array,array.length));
+			//QuickSort_2(array, 0 ,(array.length - 1));
 			//printArray(array);
 			
 			
 			//bw.write(BinarySearch(array, 9, 0, array.length - 1) + "\n" );
 			//bw.flush();
 			
-			/**int experiments = 0;
+			int experiments = 0;
 			int[] array_sizes = null;
 			String[] sizes = null;
 
@@ -344,7 +378,7 @@ public class Sort {
 				array_sizes[i] = Integer.parseInt( sizes[i] );
 
 			run_experiments(experiments, array_sizes);
-			**/
+			
 		}
 		catch(Exception ex) {}
 
