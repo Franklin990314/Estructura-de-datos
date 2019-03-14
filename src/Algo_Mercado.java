@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Algo_Mercado {
 	
-	public static void Print_String (String[] Local) {
+	public static void Print_String (String[] Elem) {
 		
 		try
 		{
@@ -19,17 +19,17 @@ public class Algo_Mercado {
 			bw.newLine();
 			bw.flush();
 			
-			for(int i = 0; i < ((Local.length * 10) / Local.length); i++) {
+			for(int i = 0; i < ((Elem.length * 10) / Elem.length); i++) {
 				
-				bw.write( i + " " + Local[i]);
+				bw.write( i + " " + Elem[i]);
 				bw.flush();
 				bw.write(i == 0? "				": "			");
 				bw.flush();
-				bw.write( "1" + i + " " +Local[i+10]);
+				bw.write( "1" + i + " " +Elem[i+10]);
 				bw.flush();
 				bw.write(i == 7 || i == 6 || i == 5 ? "			": "				");
 				bw.flush();
-				bw.write( "2" + i + " " +Local[i+20]);
+				bw.write( "2" + i + " " +Elem[i+20]);
 				bw.flush();
 				bw.newLine();
 				bw.flush();
@@ -39,14 +39,14 @@ public class Algo_Mercado {
 		catch (Exception ex) {}
 	}
 	
-	public static String[] Cadena (String Local, int j) {
+	public static String[] Cadena (String Elem, int Long) {
 		
 		try
 		{
 			
 			BufferedWriter bw = new BufferedWriter (new OutputStreamWriter (System.out));
-			BufferedReader bz = new BufferedReader (new FileReader(new File(Local)));
-			String Cadena[] = new String[j];
+			BufferedReader bz = new BufferedReader (new FileReader(new File(Elem)));
+			String Cadena[] = new String[Long];
 			String Line = null;
 			int i = 0;
 			
@@ -66,14 +66,14 @@ public class Algo_Mercado {
 		return null;
 	}
 	
-	public static int[] Cadena_Price (String Local, int j) {
+	public static int[] Cadena_Price (String Elem, int Long) {
 		
 		try
 		{
 			
 			BufferedWriter bw = new BufferedWriter (new OutputStreamWriter (System.out));
-			BufferedReader bz = new BufferedReader (new FileReader(new File(Local)));
-			int Cadena[] = new int[j];
+			BufferedReader bz = new BufferedReader (new FileReader(new File(Elem)));
+			int Cadena[] = new int[Long];
 			String Line = null;
 			int i = 0;
 			
@@ -90,7 +90,7 @@ public class Algo_Mercado {
 		catch (Exception ex) {}
 		return null;
 	}
-	public static void Print_Price(int[] Merca, String[] veget, int[] Price, int[] unidades) {
+	public static void Print_Price(int[] Ref, String[] Elem, int[] Price, int[] unid) {
 		
 		try
 		{
@@ -103,12 +103,12 @@ public class Algo_Mercado {
 			bw.newLine();
 			bw.flush();
 			
-			for(int i = 0; i < Merca.length; i++) {
+			for(int i = 0; i < Ref.length; i++) {
 				
-				bw.write(veget[Merca[i]] + "" + veget[Merca[i]+(veget.length / 2)] + "" + Price[Merca[i]] + "          	"
-						+ "Cant. disponible: " + unidades[i]);
+				bw.write(Elem[Ref[i]] + "" + Elem[Ref[i]+(Elem.length / 2)] + "" + Price[Ref[i]] + "          	"
+						+ "Cant. disponible: " + unid[i]);
 				bw.flush();
-				bw.write(Merca[i] == 4? " lb.": " U.");
+				bw.write(Ref[i] == 4? " lb.": " U.");
 				bw.newLine();
 				bw.flush();
 			}
@@ -116,7 +116,7 @@ public class Algo_Mercado {
 		catch (Exception ex) {}
 	}
 	
-	public static void Comparation(int[] Merca, String[] veget, int[] Price, int[] unidades) {
+	public static void Comparation(int[] Ref, String[] Elem, int[] Price, int[] unid) {
 		
 		try
 		{
@@ -142,10 +142,10 @@ public class Algo_Mercado {
 			for(int i = 0; i < size.length; i++)
 				Cant[i] = Integer.parseInt( size[i]);
 			
-			for(int i = 0; i < Merca.length; i++) {
+			for(int i = 0; i < Ref.length; i++) {
 				
 				if(Cant[i] > 0) 
-					Suma = Suma + (Price[Merca[i]] * Cant[i]);
+					Suma = Suma + (Price[Ref[i]] * Cant[i]);
 				
 			}
 			
@@ -192,7 +192,7 @@ public class Algo_Mercado {
 			String Elem[] = null;
 			int Elem_Price[] = null;
 			String Size[] = null;
-			int unidades[] = null;
+			int unid[] = null;
 			int Long = 0;
 			
 			
@@ -245,13 +245,13 @@ public class Algo_Mercado {
 				bw.flush();
 			}
 			
-			unidades = new int[Ref.length];
+			unid = new int[Ref.length];
 			
-			for(int i = 0; i < unidades.length; i++)
-				unidades[i] = (int)(Math.random() * 20);
+			for(int i = 0; i < unid.length; i++)
+				unid[i] = (int)(Math.random() * 20);
 			
-			Print_Price(Ref,Elem,Elem_Price,unidades);
-			Comparation(Ref,Elem,Elem_Price,unidades);
+			Print_Price(Ref,Elem,Elem_Price,unid);
+			Comparation(Ref,Elem,Elem_Price,unid);
 		}
 		catch (Exception ex) {}
 	}
